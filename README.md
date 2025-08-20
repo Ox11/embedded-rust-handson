@@ -2,10 +2,26 @@
 
 ## TODO
 
-- [ ] Installation Guide
+- [ ] Installation Guide (based on <https://docs.rust-embedded.org/book>)
   - [ ] On Windows
     - <https://www.rust-lang.org/tools/install>
-    - <https://visualstudio.microsoft.com/visual-cpp-build-tools/>
+    - Visual Studio Compiler
+      Check if this one is really needed    
+      <https://visualstudio.microsoft.com/visual-cpp-build-tools/>
+    - ARM Compiler:  
+      <https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-mingw-w64-x86_64-arm-none-eabi.exe>
+    - OpenOCD  
+      <https://github.com/xpack-dev-tools/openocd-xpack/releases/download/v0.12.0-6/xpack-openocd-0.12.0-6-win32-x64.zip> 
+    - ST Link
+      <https://www.st.com/en/development-tools/stsw-link009.html#get-software>  
+    - Add rust cross-compile target for stm32l4  
+      ```ps
+      rustup target add thumbv7em-none-eabihf
+      ``` 
+    - Install Probe-rs  
+      ```ps
+      powershell -ExecutionPolicy Bypass -c "irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex"
+      ``` 
 - [ ] Project Setup
   - [ ] Cargo new  
     ```ps

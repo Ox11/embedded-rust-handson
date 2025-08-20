@@ -1,0 +1,16 @@
+[build]
+# Pick ONE of these compilation targets
+target = "thumbv7em-none-eabihf" # Cortex-M4F with FPU
+
+[target.thumbv7em-none-eabihf]
+runner = "probe-rs run --chip STM32L412KBUx"
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+rustflags = [
+  # --- KEEP existing `link-arg` flags ---
+  "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=--nmagic",
+
+  # --- ADD following new flag for defmt lib ---
+  "-C", "link-arg=-Tdefmt.x",
+]
