@@ -37,6 +37,8 @@ A standard STM32 micro controller is chosen, where work is needed.
 On the other side, we do not want to debug hardware problems.
 For that an eval board with spark fun sensors is likely a good trade off.
 
+The build environment shall be natively on Windows to reduce dependencies on other levels of software (WSL/docker/...) and make it easier to understand what is needed.
+
 ## Perquisites
 
 - [x] Windows PC
@@ -46,16 +48,13 @@ For that an eval board with spark fun sensors is likely a good trade off.
 - [x] Sparkfun Qwiic Adapter board (Arduino Nano)
 - [x] Sparkfun TPM102 Temperature Sensor
 - [x] Qwiic Cable
-- [ ] WSL Enabled
-- [ ] Cargo inside WSL
-- [ ] Optional USBIPD
 
 ## Project Setup
 
 1. Create a rust program that prints hello world via debugger to the console
    1. Debugger Config
    2. Linker File
-   3. Launch.json
+   3. Launch.json (+ task.json)
    4. HAL: Embassy and more (probably)
 2. Add a button that controls an led
    1. 
