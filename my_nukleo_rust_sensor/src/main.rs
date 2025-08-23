@@ -1,12 +1,15 @@
+// On a uC we cannot use the standard lib and we do not have a classic main function.
 #![no_std]
 #![no_main]
 
-//use panic_halt as _; // Removed: using panic_probe instead
-
-use defmt::*;
-//use cortex_m_rt::entry;
-use defmt_rtt as _;
+// default panic handler
 use panic_probe as _;
+
+// Required for logging. defmt is short for deferred logging 
+use defmt::*;
+use defmt_rtt as _;
+
+// Required for Task like async programming
 use embassy_executor::Spawner;
 
 // Required libraries for clock tree config
@@ -21,6 +24,7 @@ async fn main(_spawner: Spawner) -> ! {
 
     let p = init_core(); // init core and get all peripherals
 
+    println!("-------------------- uC Startup --------------------");
     info!("Hello World from my Nukleo board");
     warn!("Actually not that critical");
     error!("Actually not not even an error");
