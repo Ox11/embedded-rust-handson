@@ -1,5 +1,5 @@
 [package]
-name = "my_nukleo_rust_sensor"
+name = "my_nucleo_rust_sensor"
 version = "0.1.0"
 edition = "2024"
 

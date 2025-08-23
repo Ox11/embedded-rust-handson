@@ -29,11 +29,11 @@
       ```
         - This lets us inpect the elf header
           ```ps
-          cargo readobj --bin my_nukleo_rust_sensor -- --file-headers
+          cargo readobj --bin my_nucleo_rust_sensor -- --file-headers
           ```
         - Or the linker sections
           ```ps
-          cargo size --bin my_nukleo_rust_sensor -- -A
+          cargo size --bin my_nucleo_rust_sensor -- -A
           ```
 - [ ] Project Setup
   - [ ] Cargo new  

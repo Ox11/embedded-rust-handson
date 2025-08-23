@@ -28,7 +28,7 @@ async fn main(_spawner: Spawner) -> ! {
     let p = init_core(); // init core and get all peripherals
 
     println!("-------------------- uC Startup --------------------");
-    info!("Hello World from my Nukleo board");
+    info!("Hello World from my Nucleo board");
     warn!("Actually not that critical");
     error!("Actually not not even an error");
 

@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/my_nukleo_rust_sensor"
+				"cwd": "${workspaceFolder}/my_nucleo_rust_sensor"
 			},
 			"problemMatcher": [
 				"$rustc"
