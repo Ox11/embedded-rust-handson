@@ -224,6 +224,7 @@ dependencies = [
  "embassy-futures",
  "embassy-hal-internal",
  "embassy-sync",
+ "embassy-time",
  "embedded-hal 0.2.7",
  "embedded-hal 1.0.0",
  "embedded-hal-async",
@@ -306,6 +307,8 @@ dependencies = [
  "embassy-net-driver",
  "embassy-sync",
  "embassy-time",
+ "embassy-time-driver",
+ "embassy-time-queue-utils",
  "embassy-usb-driver",
  "embassy-usb-synopsys-otg",
  "embedded-can",
@@ -370,6 +373,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8d45f5d833b6d98bd2aab0c2de70b18bfaa10faf661a1578fd8e5dfb15eb7eba"
 dependencies = [
  "document-features",
+]
+
+[[package]]
+name = "embassy-time-queue-utils"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "59b742d6fec7afcfa77c91b476520627151da3735fca6373b287c4c94b69e171"
+dependencies = [
+ "embassy-executor",
+ "heapless",
 ]
 
 [[package]]
@@ -549,6 +562,7 @@ dependencies = [
  "defmt-rtt",
  "embassy-executor",
  "embassy-stm32",
+ "embassy-time",
  "panic-probe",
 ]
 

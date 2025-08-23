@@ -22,6 +22,19 @@
       ```ps
       powershell -ExecutionPolicy Bypass -c "irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex"
       ``` 
+    - Add binutils
+      ```ps
+      rustup component add llvm-tools-preview
+      cargo install cargo-binutils
+      ```
+        - This lets us inpect the elf header
+          ```ps
+          cargo readobj --bin my_nukleo_rust_sensor -- --file-headers
+          ```
+        - Or the linker sections
+          ```ps
+          cargo size --bin my_nukleo_rust_sensor -- -A
+          ```
 - [ ] Project Setup
   - [ ] Cargo new  
     ```ps
@@ -59,6 +72,9 @@ The build environment shall be natively on Windows to reduce dependencies on oth
 2. Add a button that controls an led
    1. 
 3. Change the led to blink
-   1. Async
+   1. Add new lib: `cargo add embassy-time`
+   2. Async
 4. Read out the temperature of the sensor on a button press or periodically.
    1. Traits and member functions
+
+

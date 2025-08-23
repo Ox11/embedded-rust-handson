@@ -5,7 +5,7 @@
 // default panic handler
 use panic_probe as _;
 
-// Required for logging. defmt is short for deferred logging 
+// Required for logging. defmt is short for deferred formatting
 use defmt::*;
 use defmt_rtt as _;
 
@@ -18,6 +18,9 @@ use embassy_stm32::time::Hertz;
 
 // Required libraries for Pins
 use embassy_stm32::gpio::{Input, Level, Output, Pull, Speed};
+
+// Required for Blinking
+use embassy_time::{Duration, Timer};
 
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) -> ! {
@@ -42,7 +45,11 @@ async fn main(_spawner: Spawner) -> ! {
             led_ld3.set_high();
         }
         else {
+            // Blinking in 1 s interval using the async await function
+            Timer::after(Duration::from_millis(1_000)).await;
             led_ld3.set_low();
+            Timer::after(Duration::from_millis(1_000)).await;
+            led_ld3.set_high();
         }
     }
 }
