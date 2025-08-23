@@ -38,9 +38,24 @@ async fn main(_spawner: Spawner) -> ! {
     // led must be mutable as we would like to change its state.
     let mut led_ld3 = Output::new(p.PB3, Level::Low, Speed::Low);
 
+    let mut old_jumper_state = jumper_btn.is_low();
     loop {
         // If the jumper is set, the input is low
-        if jumper_btn.is_high()  // In rust no parentheses are required around the if clause
+        let jumper_is_set = jumper_btn.is_low();
+        if jumper_is_set != old_jumper_state
+        {
+            if jumper_is_set
+            {
+                println!("Jumper Set");
+            }
+            else
+            {
+                println!("Jumper Removed");
+            }
+            old_jumper_state = jumper_is_set;
+        }
+
+        if !jumper_is_set  // In rust no parentheses are required around the if clause
         {
             led_ld3.set_high();
         }
