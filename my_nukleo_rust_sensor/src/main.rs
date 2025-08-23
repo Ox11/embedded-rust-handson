@@ -49,6 +49,9 @@ async fn main(_spawner: Spawner) -> ! {
 
 
     info!("Hello World from a uC");
+    warn!("Actually not that critical");
+    error!("Actually not not even an error");
+
     loop {
         // your code goes here
     }

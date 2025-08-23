@@ -6,9 +6,13 @@
     "configurations": [
         {
             "type": "probe-rs-debug",
+            "preLaunchTask": "${defaultBuildTask}",
             "request": "launch",
             "name": "Debug Nukleo",
             "cwd": "${workspaceFolder}",
+            "env": {
+                "DEFMT_LOG": "warn"
+                },
             "connectUnderReset": true,
             "chip": "STM32L412KBUx",
             "flashingConfig": {
@@ -18,7 +22,22 @@
             "coreConfigs": [
                 {
                     "coreIndex": 0,
-                    "programBinary": "my_nukleo_rust_sensor/target/thumbv7em-none-eabihf/debug/my_nukleo_rust_sensor"
+                    "programBinary": "my_nukleo_rust_sensor/target/thumbv7em-none-eabihf/debug/my_nukleo_rust_sensor",
+                    "rttEnabled": true,
+                    "rttChannelFormats": [
+                        {
+                        "channelNumber": 0,
+                        // Format RTT data as String data
+                        "dataFormat": "String",
+                        // Include host-side timestamps for every line of data transferred from the target RTT output
+                        "showTimestamps": true
+                        },
+                        {
+                        "channelNumber": 1,
+                        // Treat data as raw binary data, and do not format in any way
+                        "dataFormat": "BinaryLE"
+                        }
+                    ]
                 }
             ]
         }
