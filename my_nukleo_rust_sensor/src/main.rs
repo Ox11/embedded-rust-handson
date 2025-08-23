@@ -8,12 +8,15 @@ use defmt::*;
 use defmt_rtt as _;
 use panic_probe as _;
 use embassy_executor::Spawner;
+
+// Required libraries for clock tree config
 use embassy_stm32::{init, rcc, Config};
 use embassy_stm32::time::Hertz;
 
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) -> ! {
 
+    // Setup clock tree config of STM32l412 using the embassy_stm32 library.
     let mut config = Config::default();
 
     config.rcc = rcc::Config {
