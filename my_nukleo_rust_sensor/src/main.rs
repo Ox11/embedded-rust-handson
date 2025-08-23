@@ -13,12 +13,44 @@ use embassy_executor::Spawner;
 use embassy_stm32::{init, rcc, Config};
 use embassy_stm32::time::Hertz;
 
+// Required libraries for Pins
+use embassy_stm32::gpio::{Input, Level, Output, Pull, Speed};
+
 #[embassy_executor::main]
 async fn main(_spawner: Spawner) -> ! {
 
-    // Setup clock tree config of STM32l412 using the embassy_stm32 library.
+    let p = init_core(); // init core and get all peripherals
+
+    info!("Hello World from my Nukleo board");
+    warn!("Actually not that critical");
+    error!("Actually not not even an error");
+
+    // Init button and LED
+    // Button is actually a jumper and pin D2 and GND. Hence a pull-up is required
+    let jumper_btn = Input::new(p.PA12, Pull::Up);
+    // led must be mutable as we would like to change its state.
+    let mut led_ld3 = Output::new(p.PB3, Level::Low, Speed::Low);
+
+    loop {
+        // If the jumper is set, the input is low
+        if jumper_btn.is_high()  // In rust no parentheses are required around the if clause
+        {
+            led_ld3.set_high();
+        }
+        else {
+            led_ld3.set_low();
+        }
+    }
+}
+
+// Setup clock tree config of STM32l412 using the embassy_stm32 library.
+// return an object that contains all peripherals
+fn init_core() -> embassy_stm32::Peripherals {
+
+    // create the config struct of type Config and initialize it with default values.
     let mut config = Config::default();
 
+    // overwrite the default values. If we miss one, no problem it just has the default value.
     config.rcc = rcc::Config {
         msi: Some(rcc::MSIRange::RANGE4M),
         hsi: false,
@@ -48,14 +80,6 @@ async fn main(_spawner: Spawner) -> ! {
         mux: Default::default(),
     };
 
-    init(config);
-
-
-    info!("Hello World from a uC");
-    warn!("Actually not that critical");
-    error!("Actually not not even an error");
-
-    loop {
-        // your code goes here
-    }
+    // no ';' at the end of the last line means implicitly to return this value
+    init(config) 
 }
