@@ -5,8 +5,8 @@
 - [ ] Installation Guide (based on <https://docs.rust-embedded.org/book>)
   - [ ] On Windows
     - <https://www.rust-lang.org/tools/install>
-    - 🤔Visual Studio Compiler
-      Check if this one is really needed    
+    - Visual Studio Compiler
+      🛑 TODO how to add msvc compiler for windows   
       <https://visualstudio.microsoft.com/visual-cpp-build-tools/>
     - ARM Compiler:  
       <https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-mingw-w64-x86_64-arm-none-eabi.exe>

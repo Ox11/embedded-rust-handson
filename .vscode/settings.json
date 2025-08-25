@@ -6,6 +6,7 @@
         "divq",
         "divr",
         "eabihf",
+        "msvc",
         "Nucleo",
         "pllsai",
         "prediv",
