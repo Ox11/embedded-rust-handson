@@ -2,6 +2,8 @@
 
 ## TODO
 
+- Just use the easy win install: <https://github.com/hastur-dev/rs-easy-installer-windows>
+
 - [ ] Installation Guide (based on <https://docs.rust-embedded.org/book>)
   - [ ] On Windows
     - <https://www.rust-lang.org/tools/install>

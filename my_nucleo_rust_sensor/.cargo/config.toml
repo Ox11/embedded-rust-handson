@@ -3,13 +3,18 @@
 target = "thumbv7em-none-eabihf" # Cortex-M4F with FPU
 
 [target.thumbv7em-none-eabihf]
+linker = "arm-none-eabi-ld"
+ar = "arm-none-eabi-ar"
 runner = "probe-rs run --chip STM32L412KBUx"
+rustflags = [
+  "-C", "target-cpu=cortex-m4"
+  ]
 
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
 rustflags = [
   # --- KEEP existing `link-arg` flags ---
   "-C", "link-arg=-Tlink.x",
-  "-C", "link-arg=--nmagic",
+  # "-C", "link-arg=-nmagic", # removed: not recognized by arm-none-eabi-gcc
 
   # --- ADD following new flag for defmt lib ---
   "-C", "link-arg=-Tdefmt.x",
