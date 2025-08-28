@@ -30,12 +30,13 @@ The build environment shall be natively on Windows as the advantage of the bette
 
 ### Required Tools
 
-- Install __Rust__ and configure it for the GNU toolchain (alternatively if you have a Visual Studio Licence you may also use the default):
+- Install __Rust__ and configure it for the GNU toolchain (alternatively if you have a Visual Studio License you may also use the default):
   To do, you can use the easy installer <https://github.com/hastur-dev/rs-easy-installer-windows>.
   which installs MSYS2 for the GNU-Toolchain and configures rust to use it as default
 - Install __ARM Compiler__ (check add to path at the end) <https://developer.arm.com/-/media/Files/downloads/gnu/14.3.rel1/binrel/arm-gnu-toolchain-14.3.rel1-mingw-w64-x86_64-arm-none-eabi.exe>
-- Install __ST Link__ <https://www.st.com/en/development-tools/stsw-link009.html#get-software>  
-- Install __Probe-rs__ (An alternative to OpenOCD)  
+- Install __ST Link__ (`dpinst_amd64.exe`) <https://www.st.com/en/development-tools/stsw-link009.html#get-software>  
+- Install __Probe-rs__ (An alternative to OpenOCD)
+
   ```ps
   powershell -ExecutionPolicy Bypass -c "irm https://github.com/probe-rs/probe-rs/releases/latest/download/probe-rs-tools-installer.ps1 | iex"
   ``` 
@@ -59,19 +60,53 @@ The build environment shall be natively on Windows as the advantage of the bette
 
 Now you are ready to start your own embedded project
 1. Create a new Project 
+
   ```ps
   cargo.exe new <Project-Name>
   ```
+
 2. Create a rust program that prints hello world via debugger to the console
-   1. Debugger Config
-   2. Linker File
-   3. Launch.json (+ task.json)
-   4. HAL: Embassy and more (probably)
+   1. Add your `.cargo/config.toml` for your project settings 
+   2. Edit your minimal `main.rs` file
+
+        ```rust
+        #![no_std]
+        #![no_main]
+
+        // default panic handler
+        use panic_probe as _;
+
+        // Required for logging. defmt is short for deferred formatting
+        use defmt::*;
+        use defmt_rtt as _;
+
+        // Required for Task like async programming
+        use embassy_executor::Spawner;
+
+        #[embassy_executor::main]
+        async fn main(_spawner: Spawner) -> ! {
+
+            println!("-------------------- uC Startup --------------------");
+            info!("Hello World from my Nucleo board");
+            warn!("Actually not that critical");
+            error!("Actually not not even an error");
+
+            loop {
+                // Nothing to do
+            }
+        }
+      ```
+
+   3. Test it with `cargo build` and `cargo run`
+      1. Check what happens if you run `$env:DEFMT_LOG="debug"; cargo run`
+   4. Edit `task.json` and `launch.json` launch from VS Code
 3. Add a button that controls an led
-   1. 
+   1. Init the hardware
+   2. Configure your pins
+   3. Use the button (jumper) and led
 4. Change the led to blink
-   1. Add new lib: `cargo add embassy-time`
-   2. Async
+   1. Add new lib: `cargo add embassy-time` or add it to the `Cargo.toml` file
+   2. Use the async await function to blink
 5. Read out the temperature of the sensor on a button press or periodically.
    1. Traits and member functions
 

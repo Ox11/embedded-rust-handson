@@ -5,17 +5,23 @@
         "divp",
         "divq",
         "divr",
+        "dpinst",
+        "eabi",
         "eabihf",
         "msvc",
+        "MSYS",
         "Nucleo",
         "pllsai",
         "prediv",
+        "println",
         "Qwiic",
         "readobj",
+        "rustflags",
         "rustup",
         "SDMMC",
         "SparkFun",
         "Sysclk",
-        "thumbv"
+        "thumbv",
+        "Tlink"
     ]
 }

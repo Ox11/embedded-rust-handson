@@ -14,6 +14,9 @@
 				"kind": "build",
 				"isDefault": true
 			},
+			"env": {
+                "DEFMT_LOG": "warn"
+			},
 			"label": "rust: cargo build"
 		}
 	]

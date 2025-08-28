@@ -10,9 +10,6 @@
             "request": "launch",
             "name": "Debug Nucleo",
             "cwd": "${workspaceFolder}",
-            "env": {
-                "DEFMT_LOG": "warn"
-                },
             "connectUnderReset": true,
             "chip": "STM32L412KBUx",
             "flashingConfig": {
