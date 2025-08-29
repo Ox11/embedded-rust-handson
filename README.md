@@ -134,7 +134,8 @@ Now you are ready to start your own embedded project
 
    4. Test it with `cargo build` and `cargo run`
       1. Check what happens if you run `$env:DEFMT_LOG="debug"; cargo run`
-   5. Copy and edit `task.json` and `launch.json` launch from VS Code
+   5. You may clone the repository again into a different location and checkout the branch `ox11/project_setup` to find inspiration for the next tasks
+   6. Copy and edit `task.json` and `launch.json` launch from VS Code
 3. Add a button that controls an led
    1. Init the hardware
    2. Configure your pins
